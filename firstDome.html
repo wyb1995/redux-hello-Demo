@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FirstDemo</title>
+    <script src="https://npmcdn.com/redux@latest/dist/redux.min.js"></script>
+</head>
+<body>
+<div>
+  <p id="example"></p>
+  <button id="show">dianji</button>
+</div>
+
+<script>
+  function ShowHelloWorld(state,action) {
+    if(state === undefined){
+        return 'Please Click Button!'
+    }
+
+    switch (action.type){
+      case 'show':
+        return state = "Hello World!"
+    }
+  }
+  var store = Redux.createStore(ShowHelloWorld)
+  var valueEl = document.getElementById('example')
+
+  function render() {
+    valueEl.innerHTML = store.getState().toString()
+  }
+
+  render()
+  store.subscribe(render)
+  document.getElementById('show')
+    .addEventListener('click', function () {
+      store.dispatch({ type: 'show' })
+    })
+
+</script>
+</body>
+</html>
